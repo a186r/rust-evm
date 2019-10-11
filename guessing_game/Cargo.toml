@@ -1,5 +1,5 @@
 [package]
-name = "rust-evm"
+name = "guessing_game"
 version = "0.1.0"
 authors = ["a186r <hi.aewalle@gmail.com>"]
 edition = "2018"
