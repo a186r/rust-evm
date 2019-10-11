@@ -23,7 +23,7 @@
   "homepage": "https://github.com/a186r/rust-evm#readme",
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-customizable"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
