@@ -1,8 +1,16 @@
 //io库来自于标准库，也被称为std
 use std::io;
+use rand::Rng;
+use std::cmp::Ordering;
 
 fn main() {
     println!("Guess the number!");
+
+//    生成一个随机数
+    let secret_number = rand::thread_rng().gen_range(1, 101);
+    loop {
+
+    println!("The secret number is: {}", secret_number);
 
     println!("Please input your guess.");
 
@@ -13,5 +21,27 @@ fn main() {
     io::stdin().read_line(&mut guess)
         .expect("Failed to read line");
 
-    println!("You guessed:{}", guess)
+//    检测guess类型并转换为u32
+//    let guess: u32 = guess.trim().parse().expect("Please type a number");
+
+    let guess: u32 = match guess.trim().parse() {
+        Ok(num) => num,
+        Err(_) => continue,
+    };
+
+//    使用println!占位符打印值
+    println!("You guessed:{}", guess);
+
+        println!("Please input your guess.");
+//        匹配结果
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
+    }
+
 }
