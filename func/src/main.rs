@@ -1,9 +1,10 @@
 fn main() {
-    println!("Hello, world!");
+//    println!("Hello, world!");
+//
+//    let x = five();
+//
+//    println!("The value of x is: {}", x);
 
-    let x = five();
-
-    println!("The value of x is: {}", x);
 }
 
 
