@@ -1,6 +1,6 @@
 {
   "name": "rust-evm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rust evm",
   "main": "index.js",
   "dependencies": {},
@@ -8,6 +8,7 @@
     "cz-conventional-changelog": "^3.0.2"
   },
   "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
