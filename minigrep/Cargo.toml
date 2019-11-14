@@ -1,11 +1,7 @@
 [package]
 name = "minigrep"
 version = "0.1.0"
-<<<<<<< HEAD
 authors = ["a186r <hi.aewalle@gmail.com>"]
-=======
-authors = ["a186r.home.iMac <hi.aewalle@gmail.com>"]
->>>>>>> fd4e3b40b9107bbee967f2b0395c920c19485d9e
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
