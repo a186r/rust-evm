@@ -1,5 +1,6 @@
 use std::error::Error;
 use std::{fs, env};
+use std::collections::HashMap;
 
 pub struct Config{
     pub query: String,
