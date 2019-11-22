@@ -10,13 +10,20 @@ fn main() {
         simulated_random_number
     );
 
-    let x = 4;
+    // let x = 4;
+    let x = vec![1, 2, 3];
 
-    let equal_to_x = |z| z == x;
+    let equal_to_x = move |z| z == x;
 
-    let y = 4;
+    // println!("can't use x here: {:?}", x);
+
+    let y = vec![1, 2, 3];
 
     assert!(equal_to_x(y));
+
+    // let y = 4;
+
+    // assert!(equal_to_x(y));
 
 }
 
