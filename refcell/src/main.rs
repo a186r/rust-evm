@@ -94,7 +94,6 @@ fn main() {
             Rc::weak_count(&leaf),
         );
     }
-
     println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
 //    当内部作用域结束时，branch离开作用域，Rc<Node>的强引用记数减少为0，所以其Node被丢弃
 //    来自leaf.parent的弱引用记数1与Node是否被丢弃无关，所以并没有产生任何内存泄漏。
