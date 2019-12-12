@@ -16,4 +16,15 @@ fn main() {
     }else{
         println!("Using blue as the background color");
     }
+
+//    while let循环
+    let mut stack = Vec::new();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+//    使用while let循环，只要stack.pop返回Some就打印出值
+    while let Some(top) = stack.pop(){
+        println!("{}", top);
+    }
 }
