@@ -1,6 +1,7 @@
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
-use std::fs;
+use std::{fs, thread};
+use std::time::Duration;
 
 fn main() {
 //    监听传入的流，并在接收到流时打印信息
@@ -21,9 +22,13 @@ fn handle_connection(mut stream: TcpStream) {
 
 //    匹配请求并区别处理/请求与其他请求
     let get = b"GET / HTTP/1.1\r\n";
+    let sleep = b"GET /sleep HTTP/1.1\r\n";
 
 //    将状态和文件名设置为变量
     let (status_line, filename) = if buffer.starts_with(get) {
+        ("HTTP/1.1 200 OK\r\n\r\n", "hello.html")
+    }else if buffer.starts_with(sleep){
+        thread::sleep(Duration::from_secs(5));
         ("HTTP/1.1 200 OK\r\n\r\n", "hello.html")
     } else {
         ("HTTP/1.1 404 NOT FOUND\r\n\r\n", "404.html")
