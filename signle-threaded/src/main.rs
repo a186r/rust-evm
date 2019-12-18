@@ -2,15 +2,34 @@ use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
 use std::{fs, thread};
 use std::time::Duration;
+use signle_threaded::ThreadPool;
+
+//假想的线程池接口
+//struct ThreadPool;
+//impl ThreadPool{
+////    创建新的线程池
+//    fn new(size: i32) -> ThreadPool{ThreadPool}
+//    fn execute<F>(&self, f: F)
+//        where F: FnOnce() + Send + 'static{}
+//}
 
 fn main() {
 //    监听传入的流，并在接收到流时打印信息
     let listener = TcpListener::bind("127.0.0.1:7879").unwrap();
+//    创建一个新的线程池，线程数是4
+    let pool = ThreadPool::new(4);
 
     for stream in listener.incoming(){
         let stream = stream.unwrap();
 //        println!("Connection established!");
-        handle_connection(stream);
+//        为每一个请求分配一个线程
+//        thread::spawn(|| {
+//            handle_connection(stream);
+//        });
+//        使用线程池的方案
+        pool.execute(|| {
+            handle_connection(stream);
+        });
     }
 }
 
