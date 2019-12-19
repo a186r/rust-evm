@@ -1,8 +1,12 @@
 use std::thread;
+use std::sync::mpsc;
 
 pub struct ThreadPool{
-    works:Vec<Worker>,
+    works: Vec<Worker>,
+    sender: mpsc::Sender<Job>,
 }
+
+struct Job;
 
 struct Worker{
     id: usize,
@@ -41,7 +45,8 @@ impl ThreadPool{
 }
 
 impl Worker{
-    pub fn new(id: usize) -> Worker{
+    fn new(id: usize) -> Worker{
+//        空闭包创建一个thread
         let thread = thread::spawn(|| {});
         Worker{
             id,
