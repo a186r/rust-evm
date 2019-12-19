@@ -19,7 +19,7 @@ fn main() {
 //    创建一个新的线程池，线程数是4
     let pool = ThreadPool::new(4);
 
-    for stream in listener.incoming(){
+    for stream in listener.incoming().take(2){
         let stream = stream.unwrap();
 //        println!("Connection established!");
 //        为每一个请求分配一个线程
@@ -31,6 +31,8 @@ fn main() {
             handle_connection(stream);
         });
     }
+
+    println!("Shuttin down.");
 }
 
 fn handle_connection(mut stream: TcpStream) {
