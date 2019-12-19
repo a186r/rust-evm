@@ -6,19 +6,19 @@ pub struct ThreadPool{
     sender: mpsc::Sender<Message>,
 }
 
-trait FnBox{
-    fn call_box(self: Box<Self>);
-}
-
-impl<F: FnOnce()> FnBox for F {
-    fn call_box(self: Box<F>) {
-        (*self)()
-    }
-}
+//trait FnBox{
+//    fn call_box(self: Box<Self>);
+//}
+//
+//impl<F: FnOnce()> FnBox for F {
+//    fn call_box(self: Box<F>) {
+//        (*self)()
+//    }
+//}
 
 //struct Job;
 //将Job改造成类型别名,类型别名能将长的类型变短
-type Job = Box<dyn FnBox + Send + 'static>;
+type Job = Box<dyn FnOnce() + Send + 'static>;
 
 //Message要么时存放了线程需要运行的Job的NewJob成员，要么是会导致线程退出循环并终止的Terminate成员。
 enum Message{
@@ -104,7 +104,8 @@ impl Worker{
                 match message {
                     Message::NewJob(job) => {
                         println!("Worker {} got a job; executing.", id);
-                        job.call_box();
+//                        job.call_box();
+                        job();
                     },
                     Message::Terminate => {
                         println!("Worker {} was told to terminate.", id);
